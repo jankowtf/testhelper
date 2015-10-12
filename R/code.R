@@ -22,6 +22,7 @@
 #' \code{\link[devtools]{create}} or the like.
 #'
 #' @param code test code containing expectations
+#' @return Whatever the \code{code} returns.
 #' @examples
 #' old <- setwd(tempdir())
 #' dir.create("tests/testthat/test_dir", recursive = TRUE)
@@ -31,30 +32,45 @@
 #' expect_true(file.exists("test_dir"))
 #' }
 #' # Ensuring the appropriate working directory:
-#  withConditionalWorkingDirectory(
-#    expect_true(file.exists("test_dir"))
-#  )
+#'  withCorrectWorkingDir(
+#'    expect_true(file.exists("test_dir"))
+#'  )
 #' # Clean up:
 #' if (grepl(basename(getwd()), old)) {
 #'   unlink("tests", recursive = TRUE)
 #' }
 #' setwd(old)
 #' @export
-withConditionalWorkingDirectory <- function(code, wd = getwd()) {
-  if (!length(grep("/tests/testthat$", wd))) {
-    setwd("tests/testthat")
+withCorrectWorkingDir <- function(
+  code,
+  pattern = "/tests/testthat$",
+  target_wd = "tests/testthat"
+) {
+  wd <- getwd()
+  if (!grepl(pattern, wd)) {
+    if (!file.exists(target_wd)) {
+      stop(sprintf("Directory does not exist: %s", target_wd))
+    }
+    setwd(target_wd)
   }
   on.exit(setwd(wd))
   force(code)
 }
 
-## Suggestion //
-## Maybe it might be a good idea to wrap calls to either `test_that` or to
-## `expect_that` with `withConditionalWorkingDirectory` so a developer/user
-## does not need to do it manually for his unit tests.
-test_that_conditional <- function(desc, code) {
-  withConditionalWorkingDirectory(
-    test_code(desc, substitute(code), env = parent.frame())
+#' @title
+#' Unit testing with appropriate working directory.
+#'
+#' @description
+#' Wraps call to \code{\link[testthat]{test_that}} by
+#' \code{\link[reltest]{withDetectedWorkingDirectory}}.
+#'
+#'
+#' @param desc See \code{\link[testthat]{test_that}}
+#' @param code See \code{\link[testthat]{test_that}}
+#' @export
+test_that2 <- function(desc, code) {
+  withCorrectWorkingDir(
+    testthat:::test_code(desc, substitute(code), env = parent.frame())
   )
   invisible()
 }
