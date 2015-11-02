@@ -1,3 +1,4 @@
+\dontrun{
 # Prepare:
 old <- setwd(tempdir())
 dir.create("tests/testthat/test_dir", recursive = TRUE)
@@ -16,3 +17,4 @@ if (grepl(basename(getwd()), old)) {
   unlink("tests", recursive = TRUE)
 }
 setwd(old)
+}

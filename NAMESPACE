@@ -2,3 +2,4 @@
 
 export(test_that2)
 export(withCorrectWorkingDir)
+import(testthat)

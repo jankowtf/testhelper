@@ -1,13 +1,15 @@
 Package: testthelper
 Type: Package
 Title: Tools for supporting package testing
-Version: 0.2.1
+Version: 0.2.2
 Date: 2015-11-02
 Authors@R: person("Janko", "Thyson", email = "janko.thyson@rappster.de", role = c("aut", "cre"))
 Description: Currently only a function to determine the correct working
     directory when executing unit tests line-by-line.
 License: GPL-3
 LazyData: TRUE
+Imports:
+    testthat
 Suggests:
     knitr,
     rmarkdown
