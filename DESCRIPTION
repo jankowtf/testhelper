@@ -1,10 +1,15 @@
-Package: reltest
+Package: testthelper
 Type: Package
-Title: Tools for relative unit testing
-Version: 0.1
+Title: Tools for supporting package testing
+Version: 0.2.0
 Date: 2015-10-12
 Authors@R: person("Janko", "Thyson", email = "janko.thyson@rappster.de", role = c("aut", "cre"))
-Description: Some functions to determine the correct working directory when
-  executing unit tests line-by-line.
+Description: Currently only a function to determine the correct working
+    directory when executing unit tests line-by-line.
 License: GPL-3
 LazyData: TRUE
+Suggests:
+    knitr,
+    rmarkdown
+VignetteBuilder: knitr
+RoxygenNote: 5.0.0
