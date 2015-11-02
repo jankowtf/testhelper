@@ -50,7 +50,7 @@ withCorrectWorkingDir <- function(
 #'
 #' @description
 #' Wraps call to \code{\link[testthat]{test_that}} by
-#' \code{\link[testhelper]{withDetectedWorkingDirectory}}.
+#' \code{\link[testhelper]{withCorrectDirectory}}.
 #'
 #' @param desc See \code{\link[testthat]{test_that}}
 #' @param code See \code{\link[testthat]{test_that}}
