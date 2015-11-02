@@ -50,14 +50,14 @@ withCorrectWorkingDir <- function(
 #'
 #' @description
 #' Wraps call to \code{\link[testthat]{test_that}} by
-#' \code{\link[testhelper]{withCorrectDirectory}}.
+#' \code{\link[testhelper]{withCorrectWorkingDir}}.
 #'
 #' @param desc See \code{\link[testthat]{test_that}}
 #' @param code See \code{\link[testthat]{test_that}}
 #' @import testthat
 #' @export
 test_that2 <- function(desc, code) {
-  stop("Not implemented yet")
+  # stop("Not implemented yet")
 
   withCorrectWorkingDir(
     testthat:::test_code(desc, substitute(code), env = parent.frame())

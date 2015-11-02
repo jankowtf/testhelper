@@ -13,6 +13,6 @@ test_that2(desc, code)
 }
 \description{
 Wraps call to \code{\link[testthat]{test_that}} by
-\code{\link[testhelper]{withCorrectDirectory}}.
+\code{\link[testhelper]{withCorrectWorkingDir}}.
 }
 
